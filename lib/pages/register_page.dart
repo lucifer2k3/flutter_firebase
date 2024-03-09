@@ -1,24 +1,22 @@
 // ignore: must_be_immutable
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
 import 'package:testing/pages/home.dart';
-import 'package:testing/pages/register_page.dart';
+import 'package:testing/pages/login_page.dart';
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
-final _emailController = TextEditingController();
-final _passwordController = TextEditingController();
-
-class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,14 +38,13 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 20),
               Text(
-                'Đăng nhập',
+                'Đăng ký',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: TextField(
-                  controller: _emailController,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -67,7 +64,6 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: TextField(
-                  controller: _passwordController,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -84,86 +80,26 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: true,
                 ),
               ),
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.only(right: 20.0, left: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
-                    Text(
-                      'Quên mật khẩu?',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10),
+              // const SizedBox(height: 10),
+              // Padding(
+              //   padding: const EdgeInsets.only(right: 20.0, left: 20),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.end,
+              //     children: const [
+              //       Text(
+              //         'Quên mật khẩu?',
+              //         style: TextStyle(
+              //           fontSize: 16,
+              //           fontWeight: FontWeight.w400,
+              //           fontStyle: FontStyle.italic,
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              const SizedBox(height: 20),
               GestureDetector(
-                onTap: () async {
-                  try {
-                    //Đăng nhập thành công ở đây
-
-                    await _auth.signInWithEmailAndPassword(
-                      email: _emailController.text,
-                      password: _passwordController.text,
-                    );
-                    print("đăng nhập thành công");
-
-                    showDialog(
-                      // ignore: use_build_context_synchronously
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text('Thông báo'),
-                          content: const Text(
-                            'Đăng nhập thành công!',
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (_) => const Home(),
-                                  ),
-                                );
-                              },
-                              child: const Text('Ok'),
-                            )
-                          ],
-                        );
-                      },
-                    );
-                  } catch (e) {
-                    //Đăng nhập thất bại ở đây
-
-                    print('Đăng nhập thất bại!');
-                    showDialog(
-                      // ignore: use_build_context_synchronously
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text('Thông báo'),
-                          content: const Text(
-                            'Đăng nhập thất bại! Vui lòng kiểm tra lại tại khoản hoặc mật khẩu',
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: const Text('Ok'),
-                            )
-                          ],
-                        );
-                      },
-                    );
-                    print(e);
-                  }
-                },
+                onTap: () {},
                 child: Container(
                   padding: EdgeInsets.all(18),
                   margin: EdgeInsets.only(left: 20, right: 20, top: 10),
@@ -173,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   child: Center(
                     child: Text(
-                      'Đăng nhập',
+                      'Đăng ký',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -236,19 +172,19 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Chưa có tài khoản?',
+                    'Đã có tài khoản?',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                   ),
                   GestureDetector(
                     onTap: () {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (_) => RegisterPage(),
+                          builder: (_) => LoginPage(),
                         ),
                       );
                     },
                     child: Text(
-                      ' Đăng ký',
+                      ' Đăng nhập',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
