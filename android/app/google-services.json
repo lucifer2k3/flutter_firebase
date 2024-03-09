@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "422090467811",
+    "project_id": "time-counter-74a49",
+    "storage_bucket": "time-counter-74a49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422090467811:android:5ca626f54a37e5c1b498d6",
+        "android_client_info": {
+          "package_name": "com.example.testing"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDu7wHlZjnTLbd3Id7T8VLvxLnDD91Dw90"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
