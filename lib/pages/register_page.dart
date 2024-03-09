@@ -8,7 +8,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
 import 'package:testing/pages/home.dart';
 import 'package:testing/pages/login_page.dart';
+import 'package:testing/connection/conn.dart';
+  
 
+  
 class RegisterPage extends StatefulWidget {
   RegisterPage({super.key});
 
@@ -17,6 +20,26 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  
+  final connection _auth=connection();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+
+  @override
+  void dispose(){
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override 
+  // void dispose(){
+  //   _userController.dispose();
+  //   _passwordController.dispose();
+  //   super.dispose();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +68,7 @@ class _RegisterPageState extends State<RegisterPage> {
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: TextField(
+                  controller: _emailController ,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -64,6 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: TextField(
+                  controller: _passwordController,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -99,7 +124,12 @@ class _RegisterPageState extends State<RegisterPage> {
               // ),
               const SizedBox(height: 20),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  setState(() {
+                    _signUp();
+                  });
+
+                },
                 child: Container(
                   padding: EdgeInsets.all(18),
                   margin: EdgeInsets.only(left: 20, right: 20, top: 10),
@@ -199,5 +229,14 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       ),
     );
+  }
+  void _signUp () async {
+    String email=_emailController.text;
+    String password=_passwordController.text;
+    User? user =await _auth.signUpWithEmailAndPassword(email, password);
+
+    if (user != null){
+      print("Đăng ký thành công");
+    }
   }
 }
