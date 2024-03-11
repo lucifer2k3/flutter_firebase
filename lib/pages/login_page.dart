@@ -4,12 +4,36 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:testing/pages/home.dart';
 import 'package:testing/pages/register_page.dart';
+
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final _emailController = TextEditingController();
 final _passwordController = TextEditingController();
+Map<String,dynamic>? _userData;
+
+Future<UserCredential> signInFacebook() async {
+    
+    final LoginResult loginResult = await FacebookAuth.instance.login(permissions: ['email']);
+    if (loginResult == LoginStatus.success){
+      final userData = await FacebookAuth.instance.getUserData();
+      _userData = userData;
+      print("Đăng nhập thành công");
+    }
+    else {
+      print(loginResult.message);
+    }
+
+    final OAuthCredential oAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+    return FirebaseAuth.instance.signInWithCredential(oAuthCredential);
+  }
+
+
+
+
+
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
@@ -19,6 +43,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -212,7 +238,13 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(width: 16),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+
+                      signInFacebook();
+
+
+
+                    },
                     child: Container(
                       height: 65,
                       width: 65,
@@ -264,4 +296,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+  
 }
