@@ -28,6 +28,7 @@ class _HomeState extends State<Home> {
         dayValues[index],
       ),
     );
+
     return Scaffold(
       body: Container(
         height: sizeHeight,

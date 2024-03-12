@@ -241,9 +241,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     SizedBox(width: 16),
                     GestureDetector(
-                      onTap: () {
-                        signInFacebook();
-                      },
+                      onTap: () {},
                       child: Container(
                         height: 65,
                         width: 65,

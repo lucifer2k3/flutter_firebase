@@ -131,9 +131,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {
-                    setState(() {
-                      _signUp();
-                    });
+                    setState(
+                      () {
+                        _signUp();
+                      },
+                    );
                   },
                   child: Container(
                     padding: EdgeInsets.all(18),
