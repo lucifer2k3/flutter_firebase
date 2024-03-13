@@ -7,16 +7,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:testing/connection/conn.dart';
 import 'package:testing/pages/home.dart';
 import 'package:testing/pages/register_page.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
+final connection ggconn= connection();
 final _emailController = TextEditingController();
 final _passwordController = TextEditingController();
 Map<String, dynamic>? _userData;
 
+
 Future<UserCredential> signInFacebook() async {
-  final LoginResult loginResult =
+  final LoginResult loginResult = 
       await FacebookAuth.instance.login(permissions: ['email']);
   if (loginResult == LoginStatus.success) {
     final userData = await FacebookAuth.instance.getUserData();
@@ -30,6 +33,7 @@ Future<UserCredential> signInFacebook() async {
       FacebookAuthProvider.credential(loginResult.accessToken!.token);
   return FirebaseAuth.instance.signInWithCredential(oAuthCredential);
 }
+
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
@@ -223,7 +227,18 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+
+
+                        //dang nhap google
+                        ggconn.signInWithGoogle();
+
+
+
+
+
+
+                      },
                       child: Container(
                         height: 65,
                         width: 65,

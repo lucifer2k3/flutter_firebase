@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+int s=30000;
+     double seconds=0 ;
+  DateTime a= DateTime.now();
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -17,7 +20,8 @@ class _HomeState extends State<Home> {
     double sizeWidth = MediaQuery.of(context).size.width;
     double sizeHeight = MediaQuery.of(context).size.height;
 
-    final dayValues = ['31556926', '525600', '8760', '365', '52', '12', '1'];
+
+    final dayValues = [seconds.toString(), '525600', '8760', '365', '52', '12', '1'];
     final dayItem = ['Giây', 'Phút', 'Giờ', 'Ngày', 'Tuần', 'Tháng', 'Năm'];
 
     final pages = List.generate(
@@ -28,7 +32,6 @@ class _HomeState extends State<Home> {
         dayValues[index],
       ),
     );
-
     return Scaffold(
       body: Container(
         height: sizeHeight,
@@ -142,7 +145,9 @@ class _HomeState extends State<Home> {
                   controller: controller,
                   // itemCount: pages.length,
                   itemBuilder: (_, index) {
+                    
                     return pages[index % pages.length];
+
                   },
                 ),
               ),
@@ -192,8 +197,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Container containerDayCountMethod(
-      double sizeWidth, String day, String numberCount) {
+  Container containerDayCountMethod(double sizeWidth, String day, String numberCount) {
     return Container(
       alignment: Alignment.center,
       margin: const EdgeInsets.fromLTRB(40, 30, 40, 20),
@@ -236,14 +240,7 @@ class _HomeState extends State<Home> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  numberCount,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                
                 Text(
                   day,
                   style: const TextStyle(

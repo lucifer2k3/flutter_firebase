@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ExercisesQuestion(), // Bọc LoginPage bằng MaterialApp
+      home: LoginPage(), // Bọc LoginPage bằng MaterialApp
     );
   }
 }
