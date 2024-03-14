@@ -7,32 +7,56 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:testing/connection/conn.dart';
 import 'package:testing/pages/home.dart';
 import 'package:testing/pages/register_page.dart';
-
+                                    // Innitialize
 final FirebaseAuth _auth = FirebaseAuth.instance;
-final connection ggconn= connection();
+final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+
+
+                                    //text controller
 final _emailController = TextEditingController();
 final _passwordController = TextEditingController();
-Map<String, dynamic>? _userData;
+
+String userGoogleName="";
 
 
-Future<UserCredential> signInFacebook() async {
-  final LoginResult loginResult = 
-      await FacebookAuth.instance.login(permissions: ['email']);
-  if (loginResult == LoginStatus.success) {
-    final userData = await FacebookAuth.instance.getUserData();
-    _userData = userData;
-    print("Đăng nhập thành công");
-  } else {
-    print(loginResult.message);
+
+Future <void> _signInWithGoogle () async{
+  try {
+    final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+    final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount!.authentication;
+
+    final AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleSignInAuthentication.accessToken,
+      idToken: googleSignInAuthentication.idToken,
+    );
+
+    final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+    final User? user = userCredential.user;
+
+    final String uid = user!.uid;
+    final String? email = user.email;
+    final String? displayName = user.displayName;
+    final String? photoUrl = user.photoURL;
+    userGoogleName = displayName.toString();
+    print(displayName);
+    // Use the user object for further operations or navigate to a new screen.
+  } catch (e) {
+    print(e.toString());
+  }
   }
 
-  final OAuthCredential oAuthCredential =
-      FacebookAuthProvider.credential(loginResult.accessToken!.token);
-  return FirebaseAuth.instance.signInWithCredential(oAuthCredential);
-}
+Future<void> _signOut() async {
+    await _googleSignIn.signOut();
+    await _auth.signOut();
+  }
+
+
+
 
 
 class LoginPage extends StatefulWidget {
@@ -230,10 +254,11 @@ class _LoginPageState extends State<LoginPage> {
                       onTap: () {
 
 
-                        //dang nhap google
-                        ggconn.signInWithGoogle();
-
-
+                                                                          //dang nhap google
+                        _signInWithGoogle();
+                    
+                                                                          //xu ly su kien sau phan dang nhap
+                    
 
 
 
