@@ -17,6 +17,8 @@ dependencies:
   dotted_border: ^2.1.0
   smooth_page_indicator: ^1.1.0
   dotted_line: ^3.2.2
+  multi_dropdown: ^2.1.4
+  dropdown_model_list: ^2.0.2
 
   syncfusion_flutter_sliders: ^24.2.9
 
