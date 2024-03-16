@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>422090467811-mg9kknj4mkml8c63bv6ksjajus9b335r.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.422090467811-mg9kknj4mkml8c63bv6ksjajus9b335r</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>422090467811-m5qfg8jq5e4dpdo3mo0g6lbbs6i58tup.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAPpvZ-PaHjqi7bXCsMWgNyM1Cx09wcfdU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>422090467811</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.testing</string>
+	<key>PROJECT_ID</key>
+	<string>time-counter-74a49</string>
+	<key>STORAGE_BUCKET</key>
+	<string>time-counter-74a49.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:422090467811:ios:93ebc4c677016c22b498d6</string>
+	<key>DATABASE_URL</key>
+	<string>https://time-counter-74a49-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>

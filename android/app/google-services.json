@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "422090467811",
+    "firebase_url": "https://time-counter-74a49-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "time-counter-74a49",
     "storage_bucket": "time-counter-74a49.appspot.com"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.example.testing"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "422090467811-m5qfg8jq5e4dpdo3mo0g6lbbs6i58tup.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.testing",
+            "certificate_hash": "3f85819fa67fcd0ebd9fbec178045fba766debf2"
+          }
+        },
+        {
+          "client_id": "422090467811-801fpdmt42o0o64btk081fbql94pbu1g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDu7wHlZjnTLbd3Id7T8VLvxLnDD91Dw90"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "422090467811-801fpdmt42o0o64btk081fbql94pbu1g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
