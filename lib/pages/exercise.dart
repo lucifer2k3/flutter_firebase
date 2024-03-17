@@ -23,7 +23,9 @@ class _ExerciseState extends State<Exercise> {
         backgroundColor: Colors.blue,
         iconTheme: IconThemeData(size: 28, color: Colors.white),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: Icon(
             Icons.arrow_back,
           ),
