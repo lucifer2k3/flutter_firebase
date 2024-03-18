@@ -6,6 +6,7 @@ import 'package:testing/pages/exercises_question.dart';
 import 'package:testing/pages/home_page.dart';
 import 'package:testing/pages/login_page.dart';
 import 'package:testing/pages/register_page.dart';
+import 'package:testing/pages/result_question.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final _emailController = TextEditingController();
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(), // Bọc LoginPage bằng MaterialApp
+      home: ResultQuestion(), // Bọc LoginPage bằng MaterialApp
     );
   }
 }

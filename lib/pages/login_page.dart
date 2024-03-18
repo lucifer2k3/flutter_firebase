@@ -9,7 +9,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:testing/connection/conn.dart';
-import 'package:testing/pages/home.dart';
 import 'package:testing/pages/register_page.dart';
 
 // Innitialize
