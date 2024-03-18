@@ -300,36 +300,36 @@ class NavBar extends StatelessWidget {
               color: Color(0xFF5C43BD),
             ),
             title: Text(
-              'Nâng cấp',
+              'Đăng xuất',
               style: TextStyle(
                   fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
             ),
             onTap: null,
           ),
-          const ListTile(
-            leading: Icon(
-              Icons.info,
-              color: Color(0xFF5C43BD),
-            ),
-            title: Text(
-              'Về chúng tôi',
-              style: TextStyle(
-                  fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
-            ),
-            onTap: null,
-          ),
-          const ListTile(
-            leading: Icon(
-              Icons.rate_review,
-              color: Color(0xFF5C43BD),
-            ),
-            title: Text(
-              'Đánh giá',
-              style: TextStyle(
-                  fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
-            ),
-            onTap: null,
-          ),
+          // const ListTile(
+          //   leading: Icon(
+          //     Icons.info,
+          //     color: Color(0xFF5C43BD),
+          //   ),
+          //   title: Text(
+          //     'Về chúng tôi',
+          //     style: TextStyle(
+          //         fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
+          //   ),
+          //   onTap: null,
+          // ),
+          // const ListTile(
+          //   leading: Icon(
+          //     Icons.rate_review,
+          //     color: Color(0xFF5C43BD),
+          //   ),
+          //   title: Text(
+          //     'Đánh giá',
+          //     style: TextStyle(
+          //         fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
+          //   ),
+          //   onTap: null,
+          // ),
         ],
       ),
     );
