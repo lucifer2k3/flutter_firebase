@@ -11,31 +11,31 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:testing/connection/conn.dart';
 import 'package:testing/pages/home.dart';
 import 'package:testing/pages/register_page.dart';
-                                    // Innitialize
+
+// Innitialize
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-
-
-                                    //text controller
+//text controller
 final _emailController = TextEditingController();
 final _passwordController = TextEditingController();
 
-String userGoogleName="";
+String userGoogleName = "";
 
-
-
-Future <void> _signInWithGoogle () async{
+Future<void> _signInWithGoogle() async {
   try {
-    final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount!.authentication;
+    final GoogleSignInAccount? googleSignInAccount =
+        await _googleSignIn.signIn();
+    final GoogleSignInAuthentication googleSignInAuthentication =
+        await googleSignInAccount!.authentication;
 
     final AuthCredential credential = GoogleAuthProvider.credential(
       accessToken: googleSignInAuthentication.accessToken,
       idToken: googleSignInAuthentication.idToken,
     );
 
-    final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+    final UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
     final User? user = userCredential.user;
 
     final String uid = user!.uid;
@@ -48,16 +48,12 @@ Future <void> _signInWithGoogle () async{
   } catch (e) {
     print(e.toString());
   }
-  }
+}
 
 Future<void> _signOut() async {
-    await _googleSignIn.signOut();
-    await _auth.signOut();
-  }
-
-
-
-
+  await _googleSignIn.signOut();
+  await _auth.signOut();
+}
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
@@ -86,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Center(
             child: Column(
               children: [
-                const SizedBox(height: 50),
+                const SizedBox(height: 150),
                 SizedBox(
                   height: 130,
                   width: 130,
@@ -96,237 +92,161 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
-                Text(
-                  'Đăng nhập',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                ),
-                const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  child: TextField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.white,
-                        ),
-                      ),
-                      fillColor: Colors.white,
-                      filled: true,
-                      hintText: 'Tên đăng nhập',
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  child: TextField(
-                    controller: _passwordController,
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.white,
-                        ),
-                      ),
-                      fillColor: Colors.white,
-                      filled: true,
-                      hintText: 'Mật khẩu',
-                    ),
-                    obscureText: true,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.only(right: 20.0, left: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
-                      Text(
-                        'Quên mật khẩu?',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 10),
-                GestureDetector(
-                  onTap: () async {
-                    try {
-                      //Đăng nhập thành công ở đây
-
-                      await _auth.signInWithEmailAndPassword(
-                        email: _emailController.text,
-                        password: _passwordController.text,
-                      );
-                      print("đăng nhập thành công");
-
-                      showDialog(
-                        // ignore: use_build_context_synchronously
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: const Text('Thông báo'),
-                            content: const Text(
-                              'Đăng nhập thành công!',
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                      builder: (_) => const Home(),
-                                    ),
-                                  );
-                                },
-                                child: const Text('Ok'),
-                              )
-                            ],
-                          );
-                        },
-                      );
-                    } catch (e) {
-                      //Đăng nhập thất bại ở đây
-
-                      print('Đăng nhập thất bại!');
-                      showDialog(
-                        // ignore: use_build_context_synchronously
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: const Text('Thông báo'),
-                            content: const Text(
-                              'Đăng nhập thất bại! Vui lòng kiểm tra lại tại khoản hoặc mật khẩu',
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: const Text('Ok'),
-                              )
-                            ],
-                          );
-                        },
-                      );
-                      print(e);
-                    }
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(18),
-                    margin: EdgeInsets.only(left: 20, right: 20, top: 10),
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 8, 144, 255),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Đăng nhập',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
                 const SizedBox(height: 40),
                 Text(
-                  'Hoặc tiếp tục với',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                  'Chào mừng đến với Thi THPT QG',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-
-
-                                                                          //dang nhap google
-                        _signInWithGoogle();
-                    
-                                                                          //xu ly su kien sau phan dang nhap
-                    
-
-
-
-
-                      },
-                      child: Container(
-                        height: 65,
-                        width: 65,
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 20, right: 20),
+                //   child: TextField(
+                //     controller: _passwordController,
+                //     decoration: InputDecoration(
+                //       enabledBorder: OutlineInputBorder(
+                //         borderSide: BorderSide(color: Colors.white),
+                //       ),
+                //       focusedBorder: OutlineInputBorder(
+                //         borderSide: BorderSide(
+                //           color: Colors.white,
+                //         ),
+                //       ),
+                //       fillColor: Colors.white,
+                //       filled: true,
+                //       hintText: 'Mật khẩu',
+                //     ),
+                //     obscureText: true,
+                //   ),
+                // ),
+                // const SizedBox(height: 10),
+                // Padding(
+                //   padding: const EdgeInsets.only(right: 20.0, left: 20),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.end,
+                //     children: const [
+                //       Text(
+                //         'Quên mật khẩu?',
+                //         style: TextStyle(
+                //           fontSize: 16,
+                //           fontWeight: FontWeight.w400,
+                //           fontStyle: FontStyle.italic,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                const SizedBox(height: 10),
+                GestureDetector(
+                  onTap: () {
+                    //dang nhap google
+                    _signInWithGoogle();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 8),
+                    margin: EdgeInsets.only(left: 20, right: 20, top: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SizedBox(
+                          height: 40,
+                          width: 40,
+                          child: Image.asset('images/logos/google.png'),
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            'images/logos/google.png',
+                        Text(
+                          'Tiếp tục với Google',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                    SizedBox(width: 16),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        height: 65,
-                        width: 65,
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            'images/logos/facebook.png',
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-                const SizedBox(height: 50),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Chưa có tài khoản?',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (_) => RegisterPage(),
-                          ),
-                        );
-                      },
-                      child: Text(
-                        ' Đăng ký',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ),
-                  ],
-                )
+                // const SizedBox(height: 40),
+                // Text(
+                //   'Hoặc tiếp tục với',
+                //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                // ),
+                // const SizedBox(height: 10),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     GestureDetector(
+                //       onTap: () {
+                //         //dang nhap google
+                //         _signInWithGoogle();
+
+                //         //xu ly su kien sau phan dang nhap
+                //       },
+                //       child: Container(
+                //         height: 65,
+                //         width: 65,
+                //         padding: EdgeInsets.all(10),
+                //         decoration: BoxDecoration(
+                //           borderRadius: BorderRadius.circular(10),
+                //         ),
+                //         child: ClipRRect(
+                //           borderRadius: BorderRadius.circular(10),
+                //           child: Image.asset(
+                //             'images/logos/google.png',
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //     SizedBox(width: 16),
+                //     GestureDetector(
+                //       onTap: () {},
+                //       child: Container(
+                //         height: 65,
+                //         width: 65,
+                //         padding: EdgeInsets.all(10),
+                //         decoration: BoxDecoration(
+                //           borderRadius: BorderRadius.circular(10),
+                //         ),
+                //         child: ClipRRect(
+                //           borderRadius: BorderRadius.circular(10),
+                //           child: Image.asset(
+                //             'images/logos/facebook.png',
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                // const SizedBox(height: 50),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Text(
+                //       'Chưa có tài khoản?',
+                //       style:
+                //           TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                //     ),
+                //     GestureDetector(
+                //       onTap: () {
+                //         Navigator.of(context).pushReplacement(
+                //           MaterialPageRoute(
+                //             builder: (_) => RegisterPage(),
+                //           ),
+                //         );
+                //       },
+                //       child: Text(
+                //         ' Đăng ký',
+                //         style: TextStyle(
+                //           fontSize: 16,
+                //           fontWeight: FontWeight.w500,
+                //           color: Colors.blue,
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // )
               ],
             ),
           ),
