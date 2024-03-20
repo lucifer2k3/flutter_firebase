@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:testing/pages/home_exercise_page.dart';
+import 'package:testing/pages/trang_giaobt.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -290,6 +291,25 @@ class NavBar extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => HomeExercise(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.workspace_premium,
+              color: Color(0xFF5C43BD),
+            ),
+            title: Text(
+              'Giao bài kiểm tra',
+              style: TextStyle(
+                  fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => GiaoCauHoi(),
                 ),
               );
             },
