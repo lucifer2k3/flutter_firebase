@@ -3,7 +3,16 @@
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:testing/pages/home_exercise_page.dart';
+import 'package:testing/pages/login_page.dart';
 import 'package:testing/pages/trang_giaobt.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+
+
+
+
+
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -42,6 +51,26 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   IconButton(
                     onPressed: () {
+                      FirebaseAuth.instance.authStateChanges().listen((User? user) {
+                  if (user == null) {
+                    print('User is currently signed out!');}
+                  else {
+                for (final providerProfile in user.providerData) {
+        // ID of the provider (google.com, apple.com, etc.)
+                    final provider = providerProfile.providerId;
+
+        // UID specific to the provider
+                   final uid = providerProfile.uid;
+
+        // Name, email address, and profile photo URL
+                   final name = providerProfile.displayName;
+                   final emailAddress = providerProfile.email;
+                   final profilePhoto = providerProfile.photoURL;
+    }
+    }
+  });
+
+
                       _scaffoldKey.currentState?.openDrawer();
                     },
                     icon: const Icon(Icons.menu),
@@ -243,7 +272,7 @@ class NavBar extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text('Hoanganh'),
+            accountName: Text('$Fullname'),
             accountEmail: Text('hoanganh@gmail.com'),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
@@ -314,7 +343,7 @@ class NavBar extends StatelessWidget {
               );
             },
           ),
-          const ListTile(
+           ListTile(
             leading: Icon(
               Icons.workspace_premium,
               color: Color(0xFF5C43BD),
@@ -324,7 +353,24 @@ class NavBar extends StatelessWidget {
               style: TextStyle(
                   fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
             ),
-            onTap: null,
+            onTap: () {
+
+
+              try{
+                FirebaseAuth.instance.signOut();
+                Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginPage()),
+            );
+                }
+
+              catch(e){
+                print("err");
+              }
+
+
+
+            },
           ),
           // const ListTile(
           //   leading: Icon(

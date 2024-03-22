@@ -19,7 +19,7 @@ dependencies:
   dotted_line: ^3.2.2
   multi_dropdown: ^2.1.4
   dropdown_model_list: ^2.0.2
-
+  cloud_firestore: ^4.15.9
   syncfusion_flutter_sliders: ^24.2.9
 
 

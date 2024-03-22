@@ -9,6 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:testing/connection/conn.dart';
+import 'package:testing/pages/home_page.dart';
 import 'package:testing/pages/register_page.dart';
 
 // Innitialize
@@ -20,6 +21,7 @@ final _emailController = TextEditingController();
 final _passwordController = TextEditingController();
 
 String userGoogleName = "";
+String Fullname ="Đăng nhập";
 
 Future<void> _signInWithGoogle() async {
   try {
@@ -34,7 +36,7 @@ Future<void> _signInWithGoogle() async {
     );
 
     final UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithCredential(credential);
+    await FirebaseAuth.instance.signInWithCredential(credential);
     final User? user = userCredential.user;
 
     final String uid = user!.uid;
@@ -42,7 +44,7 @@ Future<void> _signInWithGoogle() async {
     final String? displayName = user.displayName;
     final String? photoUrl = user.photoURL;
     userGoogleName = displayName.toString();
-    print(displayName);
+    Fullname =displayName.toString();
     // Use the user object for further operations or navigate to a new screen.
   } catch (e) {
     print(e.toString());
@@ -139,6 +141,18 @@ class _LoginPageState extends State<LoginPage> {
                   onTap: () {
                     //dang nhap google
                     _signInWithGoogle();
+                    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+    if (user == null) {
+      print('User is currently signed out!');
+    } else {
+      Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HomePage()),
+            );
+      print('User is signed in!');
+    }
+  });
+                    
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 40, vertical: 8),
@@ -254,3 +268,5 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
+
