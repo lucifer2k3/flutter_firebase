@@ -2,17 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
+import 'package:flutter/widgets.dart';
 import 'package:testing/pages/home_exercise_page.dart';
 import 'package:testing/pages/login_page.dart';
 import 'package:testing/pages/trang_giaobt.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-
-
-
-
-
-
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -51,25 +45,26 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   IconButton(
                     onPressed: () {
-                      FirebaseAuth.instance.authStateChanges().listen((User? user) {
-                  if (user == null) {
-                    print('User is currently signed out!');}
-                  else {
-                for (final providerProfile in user.providerData) {
-        // ID of the provider (google.com, apple.com, etc.)
-                    final provider = providerProfile.providerId;
+                      FirebaseAuth.instance
+                          .authStateChanges()
+                          .listen((User? user) {
+                        if (user == null) {
+                          print('User is currently signed out!');
+                        } else {
+                          for (final providerProfile in user.providerData) {
+                            // ID of the provider (google.com, apple.com, etc.)
+                            final provider = providerProfile.providerId;
 
-        // UID specific to the provider
-                   final uid = providerProfile.uid;
+                            // UID specific to the provider
+                            final uid = providerProfile.uid;
 
-        // Name, email address, and profile photo URL
-                   final name = providerProfile.displayName;
-                   final emailAddress = providerProfile.email;
-                   final profilePhoto = providerProfile.photoURL;
-    }
-    }
-  });
-
+                            // Name, email address, and profile photo URL
+                            final name = providerProfile.displayName;
+                            final emailAddress = providerProfile.email;
+                            final profilePhoto = providerProfile.photoURL;
+                          }
+                        }
+                      });
 
                       _scaffoldKey.currentState?.openDrawer();
                     },
@@ -79,12 +74,23 @@ class _HomePageState extends State<HomePage> {
                       iconColor: MaterialStatePropertyAll(Colors.white),
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.settings),
-                    style: const ButtonStyle(
-                      iconSize: MaterialStatePropertyAll(34),
-                      iconColor: MaterialStatePropertyAll(Colors.white),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.white,
+                      ),
+                      borderRadius: BorderRadius.circular(6000),
+                    ),
+                    child: ClipOval(
+                      child: Image.asset(
+                        'images/japan.jpg',
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ],
@@ -271,25 +277,30 @@ class NavBar extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          UserAccountsDrawerHeader(
-            accountName: Text('$Fullname'),
-            accountEmail: Text('hoanganh@gmail.com'),
-            currentAccountPicture: CircleAvatar(
-              child: ClipOval(
-                child: Image.asset(
-                  'images/japan.jpg',
-                  width: 90,
-                  height: 90,
-                  fit: BoxFit.cover,
+          GestureDetector(
+            onTap: () {
+              print('user');
+            },
+            child: UserAccountsDrawerHeader(
+              accountName: Text('$Fullname'),
+              accountEmail: Text(''),
+              currentAccountPicture: CircleAvatar(
+                child: ClipOval(
+                  child: Image.asset(
+                    'images/japan.jpg',
+                    width: 90,
+                    height: 90,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6B_LLggKx4kl06zrQhoFLFYDCZFpEzf8LRg&usqp=CAU',
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6B_LLggKx4kl06zrQhoFLFYDCZFpEzf8LRg&usqp=CAU',
+                  ),
+                  fit: BoxFit.cover,
                 ),
-                fit: BoxFit.cover,
               ),
             ),
           ),
@@ -324,26 +335,26 @@ class NavBar extends StatelessWidget {
               );
             },
           ),
+          // ListTile(
+          //   leading: Icon(
+          //     Icons.workspace_premium,
+          //     color: Color(0xFF5C43BD),
+          //   ),
+          //   title: Text(
+          //     'Giao bài kiểm tra',
+          //     style: TextStyle(
+          //         fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
+          //   ),
+          //   onTap: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => GiaoCauHoi(),
+          //       ),
+          //     );
+          //   },
+          // ),
           ListTile(
-            leading: Icon(
-              Icons.workspace_premium,
-              color: Color(0xFF5C43BD),
-            ),
-            title: Text(
-              'Giao bài kiểm tra',
-              style: TextStyle(
-                  fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => GiaoCauHoi(),
-                ),
-              );
-            },
-          ),
-           ListTile(
             leading: Icon(
               Icons.workspace_premium,
               color: Color(0xFF5C43BD),
@@ -354,22 +365,15 @@ class NavBar extends StatelessWidget {
                   fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
             ),
             onTap: () {
-
-
-              try{
+              try {
                 FirebaseAuth.instance.signOut();
                 Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => LoginPage()),
-            );
-                }
-
-              catch(e){
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+              } catch (e) {
                 print("err");
               }
-
-
-
             },
           ),
           // const ListTile(
