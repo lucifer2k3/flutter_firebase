@@ -60,12 +60,23 @@ class _HomePageState extends State<HomePage> {
                       iconColor: MaterialStatePropertyAll(Colors.white),
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.settings),
-                    style: const ButtonStyle(
-                      iconSize: MaterialStatePropertyAll(34),
-                      iconColor: MaterialStatePropertyAll(Colors.white),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.white,
+                      ),
+                      borderRadius: BorderRadius.circular(6000),
+                    ),
+                    child: ClipOval(
+                      child: Image.asset(
+                        'images/japan.jpg',
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ],
@@ -252,25 +263,30 @@ class NavBar extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          UserAccountsDrawerHeader(
-            accountName: Text('$Fullname'),
-            accountEmail: Text('hoanganh@gmail.com'),
-            currentAccountPicture: CircleAvatar(
-              child: ClipOval(
-                child: Image.asset(
-                  'images/japan.jpg',
-                  width: 90,
-                  height: 90,
-                  fit: BoxFit.cover,
+          GestureDetector(
+            onTap: () {
+              print('user');
+            },
+            child: UserAccountsDrawerHeader(
+              accountName: Text('$Fullname'),
+              accountEmail: Text(''),
+              currentAccountPicture: CircleAvatar(
+                child: ClipOval(
+                  child: Image.asset(
+                    'images/japan.jpg',
+                    width: 90,
+                    height: 90,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6B_LLggKx4kl06zrQhoFLFYDCZFpEzf8LRg&usqp=CAU',
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6B_LLggKx4kl06zrQhoFLFYDCZFpEzf8LRg&usqp=CAU',
+                  ),
+                  fit: BoxFit.cover,
                 ),
-                fit: BoxFit.cover,
               ),
             ),
           ),
@@ -305,26 +321,26 @@ class NavBar extends StatelessWidget {
               );
             },
           ),
+          // ListTile(
+          //   leading: Icon(
+          //     Icons.workspace_premium,
+          //     color: Color(0xFF5C43BD),
+          //   ),
+          //   title: Text(
+          //     'Giao bài kiểm tra',
+          //     style: TextStyle(
+          //         fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
+          //   ),
+          //   onTap: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => GiaoCauHoi(),
+          //       ),
+          //     );
+          //   },
+          // ),
           ListTile(
-            leading: Icon(
-              Icons.workspace_premium,
-              color: Color(0xFF5C43BD),
-            ),
-            title: Text(
-              'Giao bài kiểm tra',
-              style: TextStyle(
-                  fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => GiaoCauHoi(),
-                ),
-              );
-            },
-          ),
-           ListTile(
             leading: Icon(
               Icons.workspace_premium,
               color: Color(0xFF5C43BD),
@@ -345,9 +361,6 @@ class NavBar extends StatelessWidget {
               catch(e){
                 print("err");
               }
-
-
-
             },
           ),
           // const ListTile(

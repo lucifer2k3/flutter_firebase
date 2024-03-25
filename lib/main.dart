@@ -9,19 +9,12 @@ import 'package:testing/pages/register_page.dart';
 import 'package:testing/pages/result_question.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
-
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final _emailController = TextEditingController();
 final _passwordController = TextEditingController();
 
-
-
-
 // final questquery = FirebaseFirestore.instance.collection("/Quizzles/mon_hoc/toan/d1/question");
 // final ansquery = FirebaseFirestore.instance.collection("/Quizzles/mon_hoc/toan/d1/ans");
-
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,10 +38,11 @@ void main() async {
 
                                                 // get data
   
+  // get data
+  ;
 
 //   final docs2 = await questquery.get();
 //   final docs1 = await ansquery.get();
-
 
 //   for (final doc in docs1.docs) {
 //   final data = doc.data();
@@ -65,12 +59,9 @@ void main() async {
 //   print(data['d']);
 //   print(data['true']);
 
-
 // }
   runApp(MyApp());
 }
-
-
 
 class MyApp extends StatelessWidget {
   @override
