@@ -1,6 +1,6 @@
 // ignore: must_be_immutable
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
+import 'package:testing/connection/conn.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,48 +13,19 @@ import 'package:testing/pages/home_page.dart';
 import 'package:testing/pages/register_page.dart';
 
 // Innitialize
-final FirebaseAuth _auth = FirebaseAuth.instance;
-final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+
 
 //text controller
 final _emailController = TextEditingController();
 final _passwordController = TextEditingController();
 
-String userGoogleName = "";
+
 String Fullname ="Đăng nhập";
+connection conn =new connection();
 
-Future<void> _signInWithGoogle() async {
-  try {
-    final GoogleSignInAccount? googleSignInAccount =
-        await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount!.authentication;
 
-    final AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleSignInAuthentication.accessToken,
-      idToken: googleSignInAuthentication.idToken,
-    );
 
-    final UserCredential userCredential =
-    await FirebaseAuth.instance.signInWithCredential(credential);
-    final User? user = userCredential.user;
-
-    final String uid = user!.uid;
-    final String? email = user.email;
-    final String? displayName = user.displayName;
-    final String? photoUrl = user.photoURL;
-    userGoogleName = displayName.toString();
-    Fullname =displayName.toString();
-    // Use the user object for further operations or navigate to a new screen.
-  } catch (e) {
-    print(e.toString());
-  }
-}
-
-Future<void> _signOut() async {
-  await _googleSignIn.signOut();
-  await _auth.signOut();
-}
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
@@ -139,21 +110,20 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 10),
                 GestureDetector(
                   onTap: () {
+                    conn.signOut();
                     //dang nhap google
-                    _signInWithGoogle();
-                    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+                    conn.signInWithGoogle();
+                    FirebaseAuth.instance
+  .authStateChanges()
+  .listen((User? user) {
     if (user == null) {
       print('User is currently signed out!');
     } else {
-      Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const HomePage()),
-            );
-      print('User is signed in!');
+      Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
     }
   });
                     
-                  },
+                    },
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 40, vertical: 8),
                     margin: EdgeInsets.only(left: 20, right: 20, top: 10),

@@ -35,9 +35,16 @@ void main() async {
           ),
         )
       : await Firebase.initializeApp();
+      FirebaseAuth.instance.authStateChanges().listen((User? user) {
+    if (user == null) {
+      Fullname ="Đăng nhập";
+    } else {
+      Fullname = user.displayName!.toString();
+    }
+  });
 
                                                 // get data
-  ;
+  
 
 //   final docs2 = await questquery.get();
 //   final docs1 = await ansquery.get();
@@ -68,9 +75,9 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(), 
+      home: LoginPage(), 
     );
   }
 }
