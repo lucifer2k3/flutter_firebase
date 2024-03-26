@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:testing/pages/exercises_question.dart';
 import 'package:testing/pages/home_page.dart';
 import 'package:testing/pages/login_page.dart';
@@ -28,16 +29,16 @@ void main() async {
           ),
         )
       : await Firebase.initializeApp();
-      FirebaseAuth.instance.authStateChanges().listen((User? user) {
+  FirebaseAuth.instance.authStateChanges().listen((User? user) {
     if (user == null) {
-      Fullname ="Đăng nhập";
+      Fullname = "Đăng nhập";
     } else {
       Fullname = user.displayName!.toString();
     }
   });
 
-                                                // get data
-  
+  // get data
+
   // get data
   ;
 
@@ -61,14 +62,20 @@ void main() async {
 
 // }
   runApp(MyApp());
+
+  // Khóa xoay dọc
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(), 
+      home: LoginPage(),
     );
   }
 }

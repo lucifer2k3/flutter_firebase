@@ -12,20 +12,16 @@ import 'package:testing/connection/conn.dart';
 import 'package:testing/pages/home_page.dart';
 import 'package:testing/pages/register_page.dart';
 
+import 'package:native_device_orientation/native_device_orientation.dart';
+
 // Innitialize
-
-
 
 //text controller
 final _emailController = TextEditingController();
 final _passwordController = TextEditingController();
 
-
-String Fullname ="Đăng nhập";
-connection conn =new connection();
-
-
-
+String Fullname = "Đăng nhập";
+connection conn = new connection();
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
@@ -114,16 +110,19 @@ class _LoginPageState extends State<LoginPage> {
                     //dang nhap google
                     conn.signInWithGoogle();
                     FirebaseAuth.instance
-  .authStateChanges()
-  .listen((User? user) {
-    if (user == null) {
-      print('User is currently signed out!');
-    } else {
-      Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
-    }
-  });
-                    
-                    },
+                        .authStateChanges()
+                        .listen((User? user) {
+                      if (user == null) {
+                        print('User is currently signed out!');
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomePage()),
+                        );
+                      }
+                    });
+                  },
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 40, vertical: 8),
                     margin: EdgeInsets.only(left: 20, right: 20, top: 10),
@@ -238,5 +237,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
-
