@@ -5,15 +5,11 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:testing/connection/conn.dart';
 import 'package:testing/pages/home_exercise_page.dart';
 import 'package:testing/pages/login_page.dart';
+import 'package:testing/pages/setting_user_page.dart';
 import 'package:testing/pages/trang_giaobt.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
-
-
-
-connection conn =new connection();
-
+connection conn = new connection();
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -60,22 +56,32 @@ class _HomePageState extends State<HomePage> {
                       iconColor: MaterialStatePropertyAll(Colors.white),
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10),
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.white,
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UserPage(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.white,
+                        ),
+                        borderRadius: BorderRadius.circular(6000),
                       ),
-                      borderRadius: BorderRadius.circular(6000),
-                    ),
-                    child: ClipOval(
-                      child: Image.asset(
-                        'images/japan.jpg',
-                        width: 40,
-                        height: 40,
-                        fit: BoxFit.cover,
+                      child: ClipOval(
+                        child: Image.asset(
+                          'images/japan.jpg',
+                          width: 40,
+                          height: 40,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -321,25 +327,25 @@ class NavBar extends StatelessWidget {
               );
             },
           ),
-          // ListTile(
-          //   leading: Icon(
-          //     Icons.workspace_premium,
-          //     color: Color(0xFF5C43BD),
-          //   ),
-          //   title: Text(
-          //     'Giao bài kiểm tra',
-          //     style: TextStyle(
-          //         fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
-          //   ),
-          //   onTap: () {
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(
-          //         builder: (context) => GiaoCauHoi(),
-          //       ),
-          //     );
-          //   },
-          // ),
+          ListTile(
+            leading: Icon(
+              Icons.settings,
+              color: Color(0xFF5C43BD),
+            ),
+            title: Text(
+              'Cài đặt',
+              style: TextStyle(
+                  fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UserPage(),
+                ),
+              );
+            },
+          ),
           ListTile(
             leading: Icon(
               Icons.workspace_premium,
@@ -351,14 +357,14 @@ class NavBar extends StatelessWidget {
                   fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
             ),
             onTap: () {
-                
-              try{
+              try {
                 conn.signOut();
-                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()),);
-                Fullname="Đăng nhập";
-                }
-
-              catch(e){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+                Fullname = "Đăng nhập";
+              } catch (e) {
                 print("err");
               }
             },

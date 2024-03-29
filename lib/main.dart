@@ -9,6 +9,7 @@ import 'package:testing/pages/login_page.dart';
 import 'package:testing/pages/register_page.dart';
 import 'package:testing/pages/result_question.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:testing/pages/setting_user_page.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final _emailController = TextEditingController();
@@ -75,7 +76,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: HomePage(),
     );
   }
 }
