@@ -21,6 +21,7 @@ final _emailController = TextEditingController();
 final _passwordController = TextEditingController();
 
 String Fullname = "Đăng nhập";
+String authstate ="Đăng nhập";
 connection conn = new connection();
 
 class LoginPage extends StatefulWidget {
@@ -106,20 +107,16 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 10),
                 GestureDetector(
                   onTap: () {
-                    conn.signOut();
                     //dang nhap google
-                    conn.signInWithGoogle();
-                    FirebaseAuth.instance
-                        .authStateChanges()
-                        .listen((User? user) {
+                    
+                  
+                    FirebaseAuth.instance.authStateChanges().listen((User? user) {
                       if (user == null) {
+                         conn.signInWithGoogle();
                         print('User is currently signed out!');
                       } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const HomePage()),
-                        );
+                         conn.signInWithGoogle();
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
                       }
                     });
                   },

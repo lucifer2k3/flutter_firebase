@@ -12,7 +12,6 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 
 
 
-
 Future<void> signOut() async {
   await _googleSignIn.signOut();
   await _auth.signOut();

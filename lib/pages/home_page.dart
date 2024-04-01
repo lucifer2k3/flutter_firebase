@@ -319,6 +319,7 @@ class NavBar extends StatelessWidget {
                   fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
             ),
             onTap: () {
+              conn.signOut();
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -338,12 +339,7 @@ class NavBar extends StatelessWidget {
                   fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => UserPage(),
-                ),
-              );
+              Navigator.push(context, MaterialPageRoute(builder: (context) => UserPage(),),);
             },
           ),
           ListTile(
@@ -352,21 +348,23 @@ class NavBar extends StatelessWidget {
               color: Color(0xFF5C43BD),
             ),
             title: Text(
-              'Đăng xuất',
+              '$authstate',
               style: TextStyle(
                   fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
             ),
+            
             onTap: () {
-              try {
-                conn.signOut();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
-                );
-                Fullname = "Đăng nhập";
-              } catch (e) {
-                print("err");
+              
+              if (authstate=="Đăng xuất")
+              {
+              Fullname = "Đăng nhập";
+              conn.signOut();
+              Navigator.push(context,MaterialPageRoute(builder: (context) => LoginPage()),);
               }
+              else {
+              Navigator.push(context,MaterialPageRoute(builder: (context) => LoginPage()),);
+              }
+                           
             },
           ),
           // const ListTile(
