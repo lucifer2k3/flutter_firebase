@@ -1,5 +1,6 @@
 // ignore: must_be_immutable
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+import 'package:flutter/services.dart';
 import 'package:testing/connection/conn.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -105,20 +106,37 @@ class _LoginPageState extends State<LoginPage> {
                 //   ),
                 // ),
                 const SizedBox(height: 10),
+                
                 GestureDetector(
                   onTap: () {
                     //dang nhap google
-                    
-                  
+  //                   final FirebaseAuth auth = FirebaseAuth.instance;
+  //                   final User? currentUser = auth.currentUser;
+
+  //                   if (currentUser != null) {
+  // // User is signed in  
+  //                       conn.signInWithGoogle();
+  //                       Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
+  //                       print(currentUser.uid);
+  //                   } else {
+  //                       // User is not signed in
+  //                       conn.signInWithGoogle();
+  //                       Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
+  //                       print("No user signed in");
+  //                   }
                     FirebaseAuth.instance.authStateChanges().listen((User? user) {
                       if (user == null) {
                          conn.signInWithGoogle();
-                        print('User is currently signed out!');
+                        print('121212121');
                       } else {
-                         conn.signInWithGoogle();
+                        conn.signInWithGoogle();
+                        print(user.displayName.toString());
                         Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
+                 
                       }
+                      
                     });
+                    
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 40, vertical: 8),
