@@ -1,10 +1,16 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-class ExercisesQuestion extends StatelessWidget {
+class ExercisesQuestion extends StatefulWidget {
   const ExercisesQuestion({super.key});
 
+  @override
+  State<ExercisesQuestion> createState() => _ExercisesQuestionState();
+}
+
+class _ExercisesQuestionState extends State<ExercisesQuestion> {
   @override
   Widget build(BuildContext context) {
     double sizeWidth = MediaQuery.of(context).size.width;
@@ -54,46 +60,40 @@ class ExercisesQuestion extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: questionNumberMethod(Colors.blue, 1, Colors.white),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        shape: CircleBorder(),
+                        padding: EdgeInsets.all(8),
+                      ),
+                      child: Text(
+                        '1',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: questionNumberMethod(Colors.white, 2, Colors.blue),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: questionNumberMethod(Colors.white, 3, Colors.blue),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: questionNumberMethod(Colors.white, 4, Colors.blue),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: questionNumberMethod(Colors.white, 5, Colors.blue),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: questionNumberMethod(Colors.white, 6, Colors.blue),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: questionNumberMethod(Colors.white, 7, Colors.blue),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: questionNumberMethod(Colors.white, 8, Colors.blue),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: questionNumberMethod(Colors.white, 9, Colors.blue),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child:
-                          questionNumberMethod(Colors.white, 10, Colors.blue),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shape: CircleBorder(
+                          side: BorderSide(
+                            color: Colors.blue,
+                            width: 1.5,
+                          ),
+                        ),
+                        padding: EdgeInsets.all(8),
+                      ),
+                      child: Text(
+                        '2',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.blue,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -140,40 +140,129 @@ class ExercisesQuestion extends StatelessWidget {
               SizedBox(height: 20),
               Column(
                 children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: answerMethod(
-                      sizeWidth,
-                      'A. ',
-                      'Ai hoi ma bo truong tra loi',
-                      Colors.green,
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 6),
+                    width: sizeWidth,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                        alignment: Alignment.centerLeft,
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                          const EdgeInsets.fromLTRB(20, 16, 20, 16),
+                        ),
+                        foregroundColor: MaterialStateProperty.all(
+                          Colors.white,
+                        ),
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.green),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            side: BorderSide(color: Colors.green),
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        'A. Hoang anh',
+                        style: const TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: answerMethod(
-                      sizeWidth,
-                      'B. ',
-                      'Ai hoi ma bo truong tra loi',
-                      Colors.grey,
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 6),
+                    width: sizeWidth,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                        alignment: Alignment.centerLeft,
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                          const EdgeInsets.fromLTRB(20, 16, 20, 16),
+                        ),
+                        foregroundColor: MaterialStateProperty.all(
+                          Colors.white,
+                        ),
+                        backgroundColor: MaterialStateProperty.all(Colors.red),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            side: BorderSide(color: Colors.red),
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        'B. Hoang anh',
+                        style: const TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: answerMethod(
-                      sizeWidth,
-                      'C. ',
-                      'Ai hoi ma bo truong tra loi',
-                      Colors.grey,
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 6),
+                    width: sizeWidth,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                        alignment: Alignment.centerLeft,
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                          const EdgeInsets.fromLTRB(20, 16, 20, 16),
+                        ),
+                        foregroundColor: MaterialStateProperty.all(
+                          Colors.white,
+                        ),
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            side: BorderSide(color: Colors.grey),
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        'C. Hoang anh',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: answerMethod(
-                      sizeWidth,
-                      'D. ',
-                      'Ai hoi ma bo truong tra loi',
-                      Colors.red,
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 6),
+                    width: sizeWidth,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                        alignment: Alignment.centerLeft,
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                          const EdgeInsets.fromLTRB(20, 16, 20, 16),
+                        ),
+                        foregroundColor: MaterialStateProperty.all(
+                          Colors.white,
+                        ),
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            side: BorderSide(color: Colors.grey),
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        'D. Hoang anh',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
                   ),
                 ],
