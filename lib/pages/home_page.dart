@@ -19,7 +19,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void _openDrawer() {
+    _scaffoldKey.currentState!.openDrawer();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +51,7 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    onPressed: () {
-                      _scaffoldKey.currentState?.openDrawer();
-                    },
+                    onPressed: _openDrawer,
                     icon: const Icon(Icons.menu),
                     style: const ButtonStyle(
                       iconSize: MaterialStatePropertyAll(34),
@@ -259,140 +261,164 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class NavBar extends StatelessWidget {
+class NavBar extends StatefulWidget {
   const NavBar({super.key});
 
   @override
+  State<NavBar> createState() => _NavBarState();
+}
+
+class _NavBarState extends State<NavBar> {
+  bool _isOpen = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Drawer(
-      backgroundColor: Colors.white,
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          GestureDetector(
-            onTap: () {
-              print('user');
-            },
-            child: UserAccountsDrawerHeader(
-              accountName: Text('$Fullname'),
-              accountEmail: Text(''),
-              currentAccountPicture: CircleAvatar(
-                child: ClipOval(
-                  child: Image.asset(
-                    'images/japan.jpg',
-                    width: 90,
-                    height: 90,
-                    fit: BoxFit.cover,
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 1000),
+      transform: Matrix4.translationValues(_isOpen ? 0 : 1, 0, 0),
+      child: Drawer(
+        backgroundColor: Colors.white,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            GestureDetector(
+              onTap: () {
+                print('user');
+              },
+              child: UserAccountsDrawerHeader(
+                accountName: Text('$Fullname'),
+                accountEmail: Text(''),
+                currentAccountPicture: CircleAvatar(
+                  child: ClipOval(
+                    child: Image.asset(
+                      'images/japan.jpg',
+                      width: 90,
+                      height: 90,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
+                decoration: BoxDecoration(
+                  // image: DecorationImage(
+                  //   image: NetworkImage(
+                  //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6B_LLggKx4kl06zrQhoFLFYDCZFpEzf8LRg&usqp=CAU',
+                  //   ),
+                  //   fit: BoxFit.cover,
+                  // ),
+                  color: Colors.blue,
+                ),
               ),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6B_LLggKx4kl06zrQhoFLFYDCZFpEzf8LRg&usqp=CAU',
+            ),
+            const ListTile(
+              leading: Icon(
+                Icons.home,
+                color: Color(0xFF5C43BD),
+              ),
+              title: Text(
+                'Trang chủ',
+                style: TextStyle(
+                    fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
+              ),
+              onTap: null,
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.auto_stories,
+                color: Color(0xFF5C43BD),
+              ),
+              title: Text(
+                'Làm bài kiểm tra',
+                style: TextStyle(
+                    fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
+              ),
+              onTap: () {
+                conn.signOut();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomeExercise(),
                   ),
-                  fit: BoxFit.cover,
-                ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.settings,
+                color: Color(0xFF5C43BD),
               ),
+              title: Text(
+                'Cài đặt',
+                style: TextStyle(
+                    fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => UserPage(),
+                  ),
+                );
+              },
             ),
-          ),
-          const ListTile(
-            leading: Icon(
-              Icons.home,
-              color: Color(0xFF5C43BD),
+            ListTile(
+              leading: Icon(
+                Icons.workspace_premium,
+                color: Color(0xFF5C43BD),
+              ),
+              title: Text(
+                '$authstate',
+                style: TextStyle(
+                    fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
+              ),
+              onTap: () {
+                if (authstate == "Đăng xuất") {
+                  Fullname = "Đăng nhập";
+                  conn.signOut();
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
+                } else {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
+                }
+              },
             ),
-            title: Text(
-              'Trang chủ',
-              style: TextStyle(
-                  fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
-            ),
-            onTap: null,
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.auto_stories,
-              color: Color(0xFF5C43BD),
-            ),
-            title: Text(
-              'Làm bài kiểm tra',
-              style: TextStyle(
-                  fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
-            ),
-            onTap: () {
-              conn.signOut();
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomeExercise(),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.settings,
-              color: Color(0xFF5C43BD),
-            ),
-            title: Text(
-              'Cài đặt',
-              style: TextStyle(
-                  fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
-            ),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => UserPage(),),);
-            },
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.workspace_premium,
-              color: Color(0xFF5C43BD),
-            ),
-            title: Text(
-              '$authstate',
-              style: TextStyle(
-                  fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
-            ),
-            
-            onTap: () {
-              
-              if (authstate=="Đăng xuất")
-              {
-              Fullname = "Đăng nhập";
-              conn.signOut();
-              Navigator.push(context,MaterialPageRoute(builder: (context) => LoginPage()),);
-              }
-              else {
-              Navigator.push(context,MaterialPageRoute(builder: (context) => LoginPage()),);
-              }
-                           
-            },
-          ),
-          // const ListTile(
-          //   leading: Icon(
-          //     Icons.info,
-          //     color: Color(0xFF5C43BD),
-          //   ),
-          //   title: Text(
-          //     'Về chúng tôi',
-          //     style: TextStyle(
-          //         fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
-          //   ),
-          //   onTap: null,
-          // ),
-          // const ListTile(
-          //   leading: Icon(
-          //     Icons.rate_review,
-          //     color: Color(0xFF5C43BD),
-          //   ),
-          //   title: Text(
-          //     'Đánh giá',
-          //     style: TextStyle(
-          //         fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
-          //   ),
-          //   onTap: null,
-          // ),
-        ],
+            // const ListTile(
+            //   leading: Icon(
+            //     Icons.info,
+            //     color: Color(0xFF5C43BD),
+            //   ),
+            //   title: Text(
+            //     'Về chúng tôi',
+            //     style: TextStyle(
+            //         fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
+            //   ),
+            //   onTap: null,
+            // ),
+            // const ListTile(
+            //   leading: Icon(
+            //     Icons.rate_review,
+            //     color: Color(0xFF5C43BD),
+            //   ),
+            //   title: Text(
+            //     'Đánh giá',
+            //     style: TextStyle(
+            //         fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
+            //   ),
+            //   onTap: null,
+            // ),
+          ],
+        ),
       ),
     );
+  }
+
+  void toggleDrawer() {
+    setState(() {
+      _isOpen = !_isOpen;
+    });
   }
 }

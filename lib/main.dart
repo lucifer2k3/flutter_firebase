@@ -20,7 +20,8 @@ final _passwordController = TextEditingController();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Platform.isAndroid? await Firebase.initializeApp(
+  Platform.isAndroid
+      ? await Firebase.initializeApp(
           options: const FirebaseOptions(
             apiKey: 'AIzaSyDu7wHlZjnTLbd3Id7T8VLvxLnDD91Dw90',
             appId: '1:422090467811:android:5ca626f54a37e5c1b498d6',
@@ -42,7 +43,6 @@ void main() async {
   // get data
 
   // get data
-  ;
 
 //   final docs2 = await questquery.get();
 //   final docs1 = await ansquery.get();
