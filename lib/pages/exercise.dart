@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:dropdown_model_list/dropdown_model_list.dart';
+import 'package:testing/connection/get_answer.dart';
+import 'package:testing/connection/get_question.dart';
 import 'package:testing/pages/exercises_question.dart';
 
 class Exercise extends StatefulWidget {
@@ -14,6 +16,14 @@ class Exercise extends StatefulWidget {
 String monHoc = 'toán';
 
 class _ExerciseState extends State<Exercise> {
+
+
+//prepare
+
+
+  getQuest quest =new getQuest();
+  getAns ans =new getAns();
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -100,12 +110,14 @@ class _ExerciseState extends State<Exercise> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ExercisesQuestion(),
-                              ),
-                            );
+
+
+                            quest.getQuestion();
+                            ans.getAnswer();
+
+
+
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => ExercisesQuestion(),),);
                           },
                           style: ButtonStyle(
                             padding: MaterialStateProperty.all<EdgeInsets>(

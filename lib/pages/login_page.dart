@@ -10,6 +10,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:testing/connection/conn.dart';
+import 'package:testing/pages/home_exercise_page.dart';
 import 'package:testing/pages/home_page.dart';
 import 'package:testing/pages/register_page.dart';
 
@@ -124,10 +125,11 @@ class _LoginPageState extends State<LoginPage> {
   //                       Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
   //                       print("No user signed in");
   //                   }
-                    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+                     FirebaseAuth.instance.authStateChanges().listen((User? user) {
                       if (user == null) {
                          conn.signInWithGoogle();
                         print('121212121');
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage()),);
                       } else {
                         conn.signInWithGoogle();
                         print(user.displayName.toString());

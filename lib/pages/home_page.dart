@@ -359,7 +359,6 @@ class _NavBarState extends State<NavBar> {
                     fontFamily: 'Be Vietnam Pro', fontWeight: FontWeight.w600),
               ),
               onTap: () {
-                conn.signOut();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -405,11 +404,13 @@ class _NavBarState extends State<NavBar> {
                     context,
                     MaterialPageRoute(builder: (context) => LoginPage()),
                   );
+                  print("1");
                 } else {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => LoginPage()),
                   );
+                  print("2");
                 }
               },
             ),

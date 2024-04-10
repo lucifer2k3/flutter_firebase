@@ -2,10 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:testing/connection/get_question.dart';
 
 class ExercisesQuestion extends StatefulWidget {
-  const ExercisesQuestion({super.key});
-
+  ExercisesQuestion({super.key});
+  getQuest get =new getQuest();
   @override
   State<ExercisesQuestion> createState() => _ExercisesQuestionState();
 }
@@ -95,6 +96,26 @@ class _ExercisesQuestionState extends State<ExercisesQuestion> {
                         ),
                       ),
                     ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shape: CircleBorder(
+                          side: BorderSide(
+                            color: Colors.blue,
+                            width: 1.5,
+                          ),
+                        ),
+                        padding: EdgeInsets.all(8),
+                      ),
+                      child: Text(
+                        '3',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.blue,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -126,7 +147,7 @@ class _ExercisesQuestionState extends State<ExercisesQuestion> {
                           ),
                         ),
                         TextSpan(
-                          text: 'Ai hỏi mà bộ trưởng trả lời? ',
+                          text: '${question[0]}',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 18,

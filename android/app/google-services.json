@@ -8,6 +8,42 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:422090467811:android:9f8940069ad53054b498d6",
+        "android_client_info": {
+          "package_name": "com.example.quizzle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "422090467811-801fpdmt42o0o64btk081fbql94pbu1g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDu7wHlZjnTLbd3Id7T8VLvxLnDD91Dw90"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "422090467811-801fpdmt42o0o64btk081fbql94pbu1g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "422090467811-21m50j273jf3tjtn1g4g90u4e263h1c7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.quizzle.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:422090467811:android:5ca626f54a37e5c1b498d6",
         "android_client_info": {
           "package_name": "com.example.testing"
@@ -38,6 +74,13 @@
             {
               "client_id": "422090467811-801fpdmt42o0o64btk081fbql94pbu1g.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "422090467811-21m50j273jf3tjtn1g4g90u4e263h1c7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.quizzle.RunnerTests"
+              }
             }
           ]
         }

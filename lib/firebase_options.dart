@@ -49,8 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '422090467811',
     projectId: 'time-counter-74a49',
     authDomain: 'time-counter-74a49.firebaseapp.com',
-    databaseURL:
-        'https://time-counter-74a49-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL: 'https://time-counter-74a49-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'time-counter-74a49.appspot.com',
   );
 
@@ -59,8 +58,7 @@ class DefaultFirebaseOptions {
     appId: '1:422090467811:android:5ca626f54a37e5c1b498d6',
     messagingSenderId: '422090467811',
     projectId: 'time-counter-74a49',
-    databaseURL:
-        'https://time-counter-74a49-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL: 'https://time-counter-74a49-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'time-counter-74a49.appspot.com',
   );
 
@@ -69,13 +67,10 @@ class DefaultFirebaseOptions {
     appId: '1:422090467811:ios:93ebc4c677016c22b498d6',
     messagingSenderId: '422090467811',
     projectId: 'time-counter-74a49',
-    databaseURL:
-        'https://time-counter-74a49-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL: 'https://time-counter-74a49-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'time-counter-74a49.appspot.com',
-    androidClientId:
-        '422090467811-m5qfg8jq5e4dpdo3mo0g6lbbs6i58tup.apps.googleusercontent.com',
-    iosClientId:
-        '422090467811-mg9kknj4mkml8c63bv6ksjajus9b335r.apps.googleusercontent.com',
+    androidClientId: '422090467811-m5qfg8jq5e4dpdo3mo0g6lbbs6i58tup.apps.googleusercontent.com',
+    iosClientId: '422090467811-mg9kknj4mkml8c63bv6ksjajus9b335r.apps.googleusercontent.com',
     iosBundleId: 'com.example.testing',
   );
 
@@ -84,13 +79,10 @@ class DefaultFirebaseOptions {
     appId: '1:422090467811:ios:6ffb9398a8944383b498d6',
     messagingSenderId: '422090467811',
     projectId: 'time-counter-74a49',
-    databaseURL:
-        'https://time-counter-74a49-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL: 'https://time-counter-74a49-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'time-counter-74a49.appspot.com',
-    androidClientId:
-        '422090467811-m5qfg8jq5e4dpdo3mo0g6lbbs6i58tup.apps.googleusercontent.com',
-    iosClientId:
-        '422090467811-32ao350p51shlupto1g2r7pctb149b1m.apps.googleusercontent.com',
+    androidClientId: '422090467811-m5qfg8jq5e4dpdo3mo0g6lbbs6i58tup.apps.googleusercontent.com',
+    iosClientId: '422090467811-32ao350p51shlupto1g2r7pctb149b1m.apps.googleusercontent.com',
     iosBundleId: 'com.example.testing.RunnerTests',
   );
 }

@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:testing/connection/get_question.dart';
 import 'package:testing/pages/exercise.dart';
 
 class HomeExercise extends StatelessWidget {
-  const HomeExercise({super.key});
-
+  HomeExercise({super.key});
   @override
   Widget build(BuildContext context) {
     double mediaScreenWidth = MediaQuery.of(context).size.width;

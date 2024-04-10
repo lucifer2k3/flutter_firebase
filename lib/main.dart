@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:testing/firebase_options.dart';
 import 'package:testing/pages/exercises_question.dart';
 import 'package:testing/pages/home_page.dart';
 import 'package:testing/pages/login_page.dart';
@@ -15,21 +16,14 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 final _emailController = TextEditingController();
 final _passwordController = TextEditingController();
 
-// final questquery = FirebaseFirestore.instance.collection("/Quizzles/mon_hoc/toan/d1/question");
-// final ansquery = FirebaseFirestore.instance.collection("/Quizzles/mon_hoc/toan/d1/ans");
+final questquery = FirebaseFirestore.instance.collection("/Quizzles/mon_hoc/toan/d1/question");
+final ansquery = FirebaseFirestore.instance.collection("/Quizzles/mon_hoc/toan/d1/ans");
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Platform.isAndroid
-      ? await Firebase.initializeApp(
-          options: const FirebaseOptions(
-            apiKey: 'AIzaSyDu7wHlZjnTLbd3Id7T8VLvxLnDD91Dw90',
-            appId: '1:422090467811:android:5ca626f54a37e5c1b498d6',
-            messagingSenderId: '422090467811',
-            projectId: 'time-counter-74a49',
-          ),
-        )
-      : await Firebase.initializeApp();
+  await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
   FirebaseAuth.instance.authStateChanges().listen((User? user) {
     if (user == null) {
       Fullname = "Đăng nhập";
@@ -44,8 +38,8 @@ void main() async {
 
   // get data
 
-//   final docs2 = await questquery.get();
-//   final docs1 = await ansquery.get();
+//   final docs1 = await questquery.get();
+//   final docs2 = await ansquery.get();
 
 //   for (final doc in docs1.docs) {
 //   final data = doc.data();
